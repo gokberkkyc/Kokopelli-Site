@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kokopelli Coffee Co. | Nitelikli Kahve Dükkanı</title>
+    
+    <link rel="icon" href="image_fcf439.jpg" type="image/jpeg">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -31,7 +34,7 @@
             position: relative;
         }
 
-        /* Fixed Background Pattern (Opacity Increased from 0.04 to 0.08) */
+        /* Fixed Background Pattern (Daha belirgin ve arka planla kaynaşık) */
         .bg-pattern {
             position: fixed;
             top: 0;
@@ -41,7 +44,8 @@
             background-image: url('Kokopellilogo.jpg');
             background-repeat: repeat;
             background-size: 150px;
-            opacity: 0.08; 
+            opacity: 0.12; 
+            mix-blend-mode: multiply;
             z-index: -1;
             pointer-events: none;
         }
@@ -129,7 +133,7 @@
         .menu-wrapper {
             position: relative;
             z-index: 2;
-            scroll-margin-top: 20px; /* Gives breathing room when anchored */
+            scroll-margin-top: 20px; 
         }
 
         .menu-title {
@@ -1000,6 +1004,7 @@
                 </div>
             </details>
         </div>
+        
         <div class="about-section">
             <div class="about-text">
                 <h2>Hakkımızda</h2>
@@ -1083,7 +1088,7 @@
         </div>
     </footer>
 
-    <a href="#menu-section" class="mobile-menu-btn">Menüyü Gör ☕</a>
+    <a href="#menu-section" class="mobile-menu-btn">Menüyü Gör </a>
 
 </body>
 </html>
