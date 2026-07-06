@@ -28,7 +28,6 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            /* YENİ: Arka planı hafif mavi bir gradyanla kapladık */
             background: linear-gradient(to bottom, var(--light-blue), var(--bg-color));
             background-attachment: fixed;
             color: var(--text-dark);
@@ -36,7 +35,6 @@
             position: relative;
         }
 
-        /* YENİ: Sahte PNG'yi gizleyen agresif filtreler eklendi */
         .bg-pattern {
             position: fixed;
             top: 0;
@@ -64,7 +62,6 @@
             padding: 0 20px;
         }
 
-        /* Cinematic Landing Frame */
         .landing-frame {
             margin: 40px auto 60px;
             padding: 60px 20px 50px;
@@ -76,7 +73,6 @@
             border: 1px solid rgba(10, 107, 151, 0.1);
         }
 
-        /* Hero Section */
         .hero {
             text-align: center;
             position: relative;
@@ -87,6 +83,20 @@
             max-width: 250px;
             height: auto;
             margin-bottom: 10px;
+            position: relative;
+            z-index: 3; /* Logonun yazının üstünde durmasını sağlar */
+        }
+
+        /* YENİ: Logodan aşağı kayma animasyonu */
+        @keyframes slideFromLogo {
+            0% {
+                transform: translateY(-40px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .slogan {
@@ -97,9 +107,14 @@
             margin-bottom: 50px;
             color: var(--dark-blue);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            
+            /* Animasyon Ayarları */
+            opacity: 0;
+            animation: slideFromLogo 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Split Media Layout */
         .media-split {
             display: flex;
             gap: 30px;
@@ -132,7 +147,6 @@
             display: block;
         }
 
-        /* Menu Section */
         .menu-wrapper {
             position: relative;
             z-index: 2;
@@ -159,7 +173,6 @@
             left: 20%;
         }
 
-        /* Expandable Menu (Accordion) Styles */
         details.main-category {
             margin-bottom: 20px;
             border-radius: 10px;
@@ -217,7 +230,6 @@
             border-bottom-right-radius: 10px;
         }
 
-        /* Sub Category Accordion */
         details.sub-category {
             margin-bottom: 15px;
             border: 1px solid rgba(10,107,151,0.2);
@@ -255,7 +267,6 @@
             padding: 20px;
         }
 
-        /* Grid inside content */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -310,7 +321,6 @@
             font-weight: 600;
         }
 
-        /* Refreshed About Section */
         .about-section {
             display: flex;
             flex-wrap: wrap;
@@ -410,7 +420,6 @@
             margin-bottom: 2px;
         }
 
-        /* Services & Info Grid */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -459,7 +468,6 @@
             font-size: 0.95rem;
         }
 
-        /* Footer */
         footer {
             background: var(--dark-blue);
             color: #fff;
@@ -513,10 +521,10 @@
             margin-top: 15px;
         }
 
-        /* YENİ: Mix-blend-mode ile sahte PNG sorununu çözme */
+        /* YENİ: Boyutlar büyütüldü */
         .insta-link img {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             mix-blend-mode: multiply;
             filter: contrast(1.2);
             border-radius: 50%;
@@ -525,7 +533,7 @@
         .insta-link:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            color: #E1306C; /* Insta pink */
+            color: #E1306C;
         }
 
         .map-container {
@@ -550,14 +558,10 @@
             font-size: 0.85rem;
         }
 
-        /* Mobile Menu Sticky Button (Hidden on Desktop) */
         .mobile-menu-btn {
             display: none;
         }
 
-        /* ---------------------------------- */
-        /* TELEFON (MOBİL) UYUMLULUK          */
-        /* ---------------------------------- */
         @media (max-width: 1024px) {
             .media-item video, .media-item img { min-height: 350px; }
             .menu-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
@@ -565,7 +569,7 @@
 
         @media (max-width: 768px) {
             body {
-                padding-bottom: 70px; /* Gives space for the sticky menu button */
+                padding-bottom: 70px;
             }
 
             .slogan { 
@@ -589,7 +593,6 @@
                 max-height: 350px; 
             }
 
-            /* Sticky Mobile Button */
             .mobile-menu-btn {
                 display: flex;
                 align-items: center;
@@ -1095,7 +1098,7 @@
         </div>
     </footer>
 
-    <a href="#menu-section" class="mobile-menu-btn">Menüyü Gör ☕</a>
+    <a href="#menu-section" class="mobile-menu-btn">Menüyü Gör</a>
 
 </body>
 </html>
