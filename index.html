@@ -28,13 +28,15 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
+            /* YENİ: Arka planı hafif mavi bir gradyanla kapladık */
+            background: linear-gradient(to bottom, var(--light-blue), var(--bg-color));
+            background-attachment: fixed;
             color: var(--text-dark);
             line-height: 1.6;
             position: relative;
         }
 
-        /* Fixed Background Pattern (Daha belirgin ve arka planla kaynaşık) */
+        /* YENİ: Sahte PNG'yi gizleyen agresif filtreler eklendi */
         .bg-pattern {
             position: fixed;
             top: 0;
@@ -44,7 +46,8 @@
             background-image: url('Kokopellilogo.jpg');
             background-repeat: repeat;
             background-size: 150px;
-            opacity: 0.12; 
+            opacity: 0.05; 
+            filter: grayscale(100%) contrast(300%) brightness(1.1);
             mix-blend-mode: multiply;
             z-index: -1;
             pointer-events: none;
@@ -510,9 +513,13 @@
             margin-top: 15px;
         }
 
+        /* YENİ: Mix-blend-mode ile sahte PNG sorununu çözme */
         .insta-link img {
             width: 30px;
             height: 30px;
+            mix-blend-mode: multiply;
+            filter: contrast(1.2);
+            border-radius: 50%;
         }
 
         .insta-link:hover {
@@ -1088,7 +1095,7 @@
         </div>
     </footer>
 
-    <a href="#menu-section" class="mobile-menu-btn">Menüyü Gör </a>
+    <a href="#menu-section" class="mobile-menu-btn">Menüyü Gör ☕</a>
 
 </body>
 </html>
