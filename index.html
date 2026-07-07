@@ -8,7 +8,8 @@
     <link rel="icon" href="image_fcf439.jpg" type="image/jpeg">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
+        /* YENİ: Cormorant Garamond fontu eklendi */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
 
         :root {
             --primary-blue: #0A6B97;
@@ -18,6 +19,11 @@
             --text-light: #7f8c8d;
             --bg-color: #fdfbf7;
             --accent: #d4a373;
+            --header-height: 70px;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         * {
@@ -62,95 +68,139 @@
             padding: 0 20px;
         }
 
-        .landing-frame {
-            margin: 40px auto 60px;
-            padding: 60px 20px 50px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 40px;
-            box-shadow: 0 25px 50px rgba(10, 107, 151, 0.08);
-            position: relative;
-            z-index: 2;
-            border: 1px solid rgba(10, 107, 151, 0.1);
-        }
-
-        .hero {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo-container img {
-            max-width: 250px;
-            height: auto;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 3; /* Logonun yazının üstünde durmasını sağlar */
-        }
-
-        /* YENİ: Logodan aşağı kayma animasyonu */
-        @keyframes slideFromLogo {
-            0% {
-                transform: translateY(-40px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .slogan {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 50px;
-            color: var(--dark-blue);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-            
-            /* Animasyon Ayarları */
-            opacity: 0;
-            animation: slideFromLogo 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-            position: relative;
-            z-index: 2;
-        }
-
-        .media-split {
-            display: flex;
-            gap: 30px;
-            max-width: 950px;
-            margin: 0 auto;
-            justify-content: center;
-            align-items: stretch;
-        }
-
-        .media-item {
-            flex: 1;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-            overflow: hidden; 
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            background: #fff;
-        }
-
-        .media-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(10, 107, 151, 0.15);
-        }
-
-        .media-item video, .media-item img {
+        /* --- YAPIŞKAN (STICKY) HEADER --- */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100%;
-            min-height: 450px;
-            max-height: 550px;
-            object-fit: cover;
-            display: block;
+            height: var(--header-height);
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
+        .sticky-header img {
+            height: 45px;
+            mix-blend-mode: multiply;
+        }
+
+        /* --- TAM EKRAN HERO ALANI --- */
+        .hero-full {
+            width: 100vw;
+            height: 100vh; 
+            min-height: 600px;
+            background-image: url('koko.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end; 
+            margin-bottom: 80px; 
+        }
+
+        .hero-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(to top, var(--bg-color) 0%, rgba(253,251,247,0.85) 40%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* YENİ: Hizalama için padding ve margin ayarlandı */
+            padding: 0 4% 10vh; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start; 
+        }
+
+        .hero-logo {
+            max-width: 420px; /* YENİ: Logo boyutu artırıldı */
+            height: auto;
+            margin-bottom: 5px;
+            mix-blend-mode: multiply;
+        }
+
+        @keyframes slideUpFade {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .elegant-slogan {
+            /* YENİ: Cormorant Garamond ile çok daha elegan bir font ayarı */
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.8rem;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--dark-blue);
+            margin: 0 0 35px 5px;
+            line-height: 1.05;
+            opacity: 0;
+            animation: slideUpFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            opacity: 0;
+            animation: slideUpFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards;
+            margin-left: 5px;
+        }
+
+        .scroll-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-blue);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 25px rgba(5, 74, 107, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .scroll-btn:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 163, 115, 0.4);
+        }
+
+        .scroll-btn.secondary {
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--dark-blue);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .scroll-btn.secondary:hover {
+            background: #fff;
+            color: var(--primary-blue);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Menu Section */
         .menu-wrapper {
             position: relative;
             z-index: 2;
-            scroll-margin-top: 20px; 
+            scroll-margin-top: calc(var(--header-height) + 20px); 
         }
 
         .menu-title {
@@ -171,6 +221,31 @@
             position: absolute;
             bottom: -10px;
             left: 20%;
+        }
+
+        /* Menü İçecek Fotoğrafı */
+        .menu-featured-img {
+            width: 100%;
+            height: 350px;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .menu-featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* YENİ: Fotoğrafı aşağı kaydırıp kahveyi kadraja sokan ayar */
+            object-position: center 30%; 
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-featured-img:hover img {
+            transform: scale(1.03);
         }
 
         details.main-category {
@@ -335,6 +410,7 @@
             max-width: 1050px; 
             position: relative;
             z-index: 2;
+            scroll-margin-top: calc(var(--header-height) + 40px);
         }
 
         .about-text {
@@ -475,6 +551,7 @@
             margin-top: 60px;
             position: relative;
             z-index: 2;
+            scroll-margin-top: calc(var(--header-height) + 20px);
         }
 
         .footer-content {
@@ -521,7 +598,6 @@
             margin-top: 15px;
         }
 
-        /* YENİ: Boyutlar büyütüldü */
         .insta-link img {
             width: 40px;
             height: 40px;
@@ -558,43 +634,56 @@
             font-size: 0.85rem;
         }
 
+        /* --- MOBİL BUTON (JavaScript ile kontrol ediliyor) --- */
         .mobile-menu-btn {
-            display: none;
+            display: none; 
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         @media (max-width: 1024px) {
-            .media-item video, .media-item img { min-height: 350px; }
             .menu-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+            .elegant-slogan { font-size: 3.5rem; }
         }
 
         @media (max-width: 768px) {
-            body {
-                padding-bottom: 70px;
+            body { padding-bottom: 70px; }
+
+            .hero-full {
+                height: 100vh;
+                min-height: 500px;
+                /* YENİ: Mobilde arka plan sağa kaydırıldı (Ağaçlar yerine iç mekan) */
+                background-position: 75% center; 
+                margin-bottom: 60px;
             }
 
-            .slogan { 
-                font-size: 1.5rem; 
-                margin-bottom: 30px; 
+            .hero-content {
+                align-items: center; 
+                text-align: center;
+                padding-bottom: 40px;
             }
+
+            .hero-logo { max-width: 280px; margin-left: 0; }
+            .elegant-slogan { font-size: 2.8rem; margin: 0 0 25px 0; }
             
-            .landing-frame { 
-                padding: 40px 15px 30px; 
-                margin-top: 20px; 
-                border-radius: 25px; 
-            }
-
-            .media-split { 
+            .hero-buttons {
                 flex-direction: column; 
-                gap: 20px; 
+                width: 100%;
+                max-width: 300px;
+                gap: 12px;
+                margin-left: 0;
             }
 
-            .media-item video, .media-item img { 
-                min-height: 250px; 
-                max-height: 350px; 
-            }
+            .scroll-btn { width: 100%; }
 
-            .mobile-menu-btn {
+            .menu-featured-img { height: 200px; margin-bottom: 30px; }
+
+            /* Dinamik Mobil Buton Sınıfı */
+            .mobile-menu-btn.show {
                 display: flex;
+                opacity: 1;
+                pointer-events: auto;
                 align-items: center;
                 justify-content: center;
                 position: fixed;
@@ -608,13 +697,10 @@
                 font-weight: 600;
                 box-shadow: 0 5px 20px rgba(0,0,0,0.3);
                 z-index: 9999;
-                transition: transform 0.3s ease;
                 font-size: 1rem;
             }
 
-            .mobile-menu-btn:active {
-                transform: scale(0.95);
-            }
+            .mobile-menu-btn.show:active { transform: scale(0.95); }
 
             .about-section { 
                 flex-direction: column; 
@@ -630,88 +716,27 @@
                 text-align: center; 
             }
 
-            .about-text h2::after {
-                left: 50%;
-                transform: translateX(-50%); 
-            }
-
-            .about-images {
-                flex: 1 1 100%; 
-                width: 100%;
-            }
-
+            .about-text h2::after { left: 50%; transform: translateX(-50%); }
+            .about-images { flex: 1 1 100%; width: 100%; }
             .about-text h2 { font-size: 1.8rem; }
 
-            .award-banner { 
-                flex-direction: column; 
-                text-align: center; 
-                padding: 20px 15px;
-            }
+            .award-banner { flex-direction: column; text-align: center; padding: 20px 15px; }
+            .award-banner img { margin-right: 0; margin-bottom: 15px; }
+            .menu-title { font-size: 2rem; margin: 40px 0 20px; }
 
-            .award-banner img { 
-                margin-right: 0; 
-                margin-bottom: 15px; 
-            }
+            details.main-category > summary { font-size: 1.2rem; padding: 12px 15px; }
+            details.sub-category > summary { font-size: 1.05rem; padding: 10px 15px; }
+            .main-category-content, .sub-category-content { padding: 10px; }
+            .menu-grid { grid-template-columns: 1fr; gap: 15px; }
 
-            .menu-title { 
-                font-size: 2rem; 
-                margin: 40px 0 20px; 
-            }
+            .item-header { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .item-price { align-self: flex-start; font-size: 1.1rem; }
 
-            details.main-category > summary { 
-                font-size: 1.2rem; 
-                padding: 12px 15px; 
-            }
-
-            details.sub-category > summary { 
-                font-size: 1.05rem; 
-                padding: 10px 15px; 
-            }
-
-            .main-category-content, .sub-category-content {
-                padding: 10px;
-            }
-
-            .menu-grid { 
-                grid-template-columns: 1fr; 
-                gap: 15px; 
-            }
-
-            .item-header { 
-                flex-direction: column; 
-                align-items: flex-start; 
-                gap: 5px; 
-            }
-            
-            .item-price { 
-                align-self: flex-start; 
-                font-size: 1.1rem;
-            }
-
-            .info-grid { 
-                grid-template-columns: 1fr; 
-                margin: 40px 0; 
-                gap: 20px; 
-            }
-
+            .info-grid { grid-template-columns: 1fr; margin: 40px 0; gap: 20px; }
             .info-card { padding: 20px; }
-
-            footer { 
-                padding: 40px 15px 20px; 
-                margin-top: 40px; 
-            }
-
-            .footer-content { 
-                grid-template-columns: 1fr; 
-                gap: 30px; 
-                text-align: center; 
-            }
-
-            .footer-col h3::after { 
-                left: 50%; 
-                transform: translateX(-50%); 
-            }
-
+            footer { padding: 40px 15px 20px; margin-top: 40px; }
+            .footer-content { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .footer-col h3::after { left: 50%; transform: translateX(-50%); }
             .insta-link { justify-content: center; }
         }
     </style>
@@ -720,28 +745,32 @@
 
     <div class="bg-pattern"></div>
 
-    <div class="container">
+    <header class="sticky-header">
+        <img src="image_fcf439.jpg" alt="Kokopelli Coffee Co.">
+    </header>
+
+    <section class="hero-full">
+        <div class="hero-gradient"></div>
         
-        <div class="landing-frame">
-            <div class="hero">
-                <div class="logo-container">
-                    <img src="image_fcf439.jpg" alt="Kokopelli Coffee Co. Logo">
-                </div>
-                <h1 class="slogan">Nitelikli Kahve Dükkanı</h1>
-                
-                <div class="media-split">
-                    <div class="media-item">
-                        <video src="japanese-cold-brew.mp4" autoplay loop muted playsinline></video>
-                    </div>
-                    <div class="media-item">
-                        <img src="image_fd7b20.jpg" alt="Kokopelli İç Mekan Detay">
-                    </div>
-                </div>
+        <div class="hero-content">
+            <img src="image_fcf439.jpg" class="hero-logo" alt="Kokopelli Logo">
+            <h1 class="elegant-slogan">Nitelikli Kahve<br>Dükkanı</h1>
+            
+            <div class="hero-buttons">
+                <a href="#menu-section" class="scroll-btn">Menüyü İncele ↓</a>
+                <a href="#about-section" class="scroll-btn secondary">Hakkımızda ↓</a>
+                <a href="#contact-section" class="scroll-btn secondary">İletişim & Konum ↓</a>
             </div>
         </div>
+    </section>
 
+    <div class="container">
         <div id="menu-section" class="menu-wrapper">
             <h2 class="menu-title">Menü</h2>
+            
+            <div class="menu-featured-img">
+                <img src="icecek.jpg" alt="Kokopelli Özel İçecek">
+            </div>
 
             <details class="main-category">
                 <summary>1. Yöresel ve Nitelikli Kahveler</summary>
@@ -1015,7 +1044,7 @@
             </details>
         </div>
         
-        <div class="about-section">
+        <div id="about-section" class="about-section">
             <div class="about-text">
                 <h2>Hakkımızda</h2>
                 <p>Sadece nitelikli kahve sunuyoruz; üç kıtadan dönüşümlü olarak seçtiğimiz çekirdeklerle 800'den fazla tadım profiline sahibiz.</p>
@@ -1074,7 +1103,7 @@
 
     </div>
 
-    <footer>
+    <footer id="contact-section">
         <div class="footer-content">
             <div class="footer-col">
                 <h3>İletişim</h3>
@@ -1098,7 +1127,47 @@
         </div>
     </footer>
 
-    <a href="#menu-section" class="mobile-menu-btn">Menüyü Gör</a>
+    <a href="#" class="mobile-menu-btn">Menüyü Kapat ↑</a>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const detailsElements = document.querySelectorAll('#menu-section details');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            const menuSection = document.getElementById('menu-section');
+
+            // Menü öğelerinden herhangi biri açıldığında butonu göster
+            detailsElements.forEach(detail => {
+                detail.addEventListener('toggle', () => {
+                    const isAnyOpen = Array.from(detailsElements).some(d => d.open);
+                    if (isAnyOpen && window.innerWidth <= 768) {
+                        mobileBtn.classList.add('show');
+                    } else {
+                        mobileBtn.classList.remove('show');
+                    }
+                });
+            });
+
+            // Butona tıklanınca tüm açık detayları kapat ve menü başına kaydır
+            mobileBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // Varsayılan a etiketini engelle
+                
+                // Tüm açık sekmeleri kapat
+                detailsElements.forEach(d => d.removeAttribute('open'));
+                
+                // Butonu tekrar gizle
+                mobileBtn.classList.remove('show');
+                
+                // Ekranı Menü başlığına pürüzsüzce kaydır (Header boşluğunu hesaba katarak)
+                const headerOffset = 80;
+                const elementPosition = menuSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+                window.scrollTo({
+                     top: offsetPosition,
+                     behavior: "smooth"
+                });
+            });
+        });
+    </script>
 </body>
 </html>
